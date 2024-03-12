@@ -72,34 +72,67 @@
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
 
-        <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
+        <ul class="help--slides-items" id="slidesContainer">
+            <c:forEach items="${institutions}" var="institution" varStatus="status">
+                <c:if test="${status.index % 4 == 0}">
+                    <li class="slide" style="display: none;">
+                </c:if>
+
+                <c:if test="${status.index % 4 == 0 || status.index % 4 == 2}">
+                    <div class="col"> <!-- Nowa kolumna dla każdej pary fundacji -->
+                </c:if>
+
+                <div class="fundation">
+                    <div class="title">${institution.name}</div>
+                    <div class="subtitle">${institution.description}</div>
                 </div>
 
-                <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-                </div>
-            </li>
+                <c:if test="${status.index % 4 == 1 || status.index % 4 == 3 || status.last}">
+                    </div> <!-- Zamknięcie div.col -->
+                </c:if>
 
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
-
-            </li>
-
+                <c:if test="${status.index % 4 == 3 || status.last}">
+                    </li>
+                </c:if>
+            </c:forEach>
         </ul>
+
+
+
+        <div class="help--slides-navigation">
+            <button id="slideLeft" class="slide-nav">&lt;</button> <!-- Lewa strzałka -->
+        </div>
+
+        <div class="help--slides-navigation">
+            <button id="slideRight" class="slide-nav">&gt;</button> <!-- Prawa strzałka -->
+        </div>
     </div>
 
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, idx) => {
+                slide.style.display = idx === index ? 'flex' : 'none';
+            });
+        }
+
+        document.getElementById('slideLeft').addEventListener('click', function() {
+            currentSlide = Math.max(currentSlide - 1, 0);
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('slideRight').addEventListener('click', function() {
+            currentSlide = Math.min(currentSlide + 1, slides.length - 1);
+            showSlide(currentSlide);
+        });
+
+        showSlide(currentSlide); // Pokaż pierwszy slajd na start
+    });
+</script>
+dd
 
 <%@ include file="footer.jsp" %>
