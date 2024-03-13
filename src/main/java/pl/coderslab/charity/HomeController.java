@@ -31,7 +31,9 @@ public class HomeController {
         // Obliczenie sumy worków
         int totalBags = donationService.getTotalBags();
         model.addAttribute("totalBags", totalBags);
-        // ...
+        // Ilość darów
+        int numberDonations = donationService.getTotalDonations();
+        model.addAttribute("totalDonations", numberDonations);
         return "index"; // lub nazwa widoku, który chcesz zwrócić
     }
 }
