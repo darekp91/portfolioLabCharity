@@ -25,4 +25,7 @@ public class DonationService {
         }
         return totalBags;
     }
+    public int getTotalDonations() {
+        return (int) donationRepository.count();
+    }
 }
