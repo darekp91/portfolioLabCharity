@@ -16,4 +16,13 @@ public class DonationService {
     public List<Donation> getAllDonations() {
         return donationRepository.findAll();
     }
+
+    public int getTotalBags() {
+        List<Donation> donations = donationRepository.findAll();
+        int totalBags = 0;
+        for (Donation donation : donations) {
+            totalBags += donation.getQuantity();
+        }
+        return totalBags;
+    }
 }
