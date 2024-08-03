@@ -1,19 +1,21 @@
 package pl.coderslab.charity.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "Category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+    private String description; // Add this line
 
-    public Category() {
-
-    }
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -31,8 +33,11 @@ public class Category {
         this.name = name;
     }
 
-    public Category(Long id, String name) {
-        this.id = id;
-        this.name = name;
+    public String getDescription() { // Add this getter
+        return description;
+    }
+
+    public void setDescription(String description) { // Add this setter
+        this.description = description;
     }
 }
