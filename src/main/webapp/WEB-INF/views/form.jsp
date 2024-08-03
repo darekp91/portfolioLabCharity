@@ -81,55 +81,17 @@
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input
-                                type="checkbox"
-                                name="categories"
-                                value="clothes-to-use"
-                        />
-                        <span class="checkbox"></span>
-                        <span class="description"
-                        >ubrania, które nadają się do ponownego użycia</span
-                        >
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input
-                                type="checkbox"
-                                name="categories"
-                                value="clothes-useless"
-                        />
-                        <span class="checkbox"></span>
-                        <span class="description">ubrania, do wyrzucenia</span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="toys" />
-                        <span class="checkbox"></span>
-                        <span class="description">zabawki</span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="books" />
-                        <span class="checkbox"></span>
-                        <span class="description">książki</span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="other" />
-                        <span class="checkbox"></span>
-                        <span class="description">inne</span>
-                    </label>
-                </div>
+                <ul class="help--slides-items" id="slidesContainer">
+                    <c:forEach var="category" items="${categories}">
+                        <div class="form-group form-group--checkbox">
+                            <label>
+                                <input type="checkbox" name="categories" value="${category.name}" />
+                                <span class="checkbox"></span>
+                                <span class="category-label">${category.name}</span>
+                            </label>
+                        </div>
+                    </c:forEach>
+                </ul>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
@@ -152,8 +114,6 @@
                     <button type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
-
-
 
             <!-- STEP 4 -->
             <div data-step="3">
@@ -180,8 +140,22 @@
                         <span class="description">
                   <div class="title">Fundacja “Dla dzieci"</div>
                   <div class="subtitle">
-                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
-                    życiowej.
+                    Cel i misja: Pomoc osobom znajdującym się w trudnej
+                    sytuacji życiowej
+                  </div>
+                </span>
+                    </label>
+                </div>
+
+                <div class="form-group form-group--checkbox">
+                    <label>
+                        <input type="radio" name="organization" value="old" />
+                        <span class="checkbox radio"></span>
+                        <span class="description">
+                  <div class="title">Fundacja “Bez domu”</div>
+                  <div class="subtitle">
+                    Cel i misja: Pomoc dla osób nie posiadających miejsca
+                    zamieszkania
                   </div>
                 </span>
                     </label>
@@ -193,7 +167,7 @@
                 </div>
             </div>
 
-            <!-- STEP 5 -->
+            <!-- STEP 4 -->
             <div data-step="4">
                 <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
 
@@ -299,6 +273,5 @@
         </form>
     </div>
 </section>
-
 
 <%@ include file="footer.jsp" %>

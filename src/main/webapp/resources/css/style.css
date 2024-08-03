@@ -1814,6 +1814,10 @@ footer .bottom-line--icons a img {
 .form--steps form .summary {
   padding: 0 15px;
 }
+.category-label {
+  margin-left: 10px; /* Adjust the value to set the desired spacing */
+}
+
 
 /* line 152, scss/style.scss */
 .form--steps form .summary ul {
